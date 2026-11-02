@@ -1,0 +1,15 @@
+import assert from "node:assert/strict";
+import { applyVolumes, isVolumeCommand } from "./discordGlass/volume";
+const command = { type: "volume", channelId: "channel", userId: "other", volume: 75 };
+assert(isVolumeCommand(command));
+for (const volume of [-1, 201, NaN, Infinity, "75", null]) assert(!isVolumeCommand({ ...command, volume }));
+const applied: [string, number][] = [];
+const setVolume = (id: string, volume: number) => { applied.push([id, volume]); };
+applyVolumes([command, { ...command, volume: 0 }, { ...command, volume: 200 }], "channel", new Set(["other", "self"]), "self", setVolume);
+assert.deepEqual(applied, [["other", 75], ["other", 0], ["other", 200]]);
+applied.length = 0;
+applyVolumes([{ ...command, userId: "self" }, { ...command, userId: "departed" }, { ...command, channelId: "old-channel" }, { ...command, volume: 999 }, null], "channel", new Set(["other", "self"]), "self", setVolume);
+applyVolumes([command], undefined, new Set(["other"]), "self", setVolume);
+applyVolumes("not an array", "channel", new Set(["other"]), "self", setVolume);
+assert.deepEqual(applied, []);
+console.log("Volume command checks passed: bounds, valid output, self/departed users, stale channels, disconnect and malformed input");
