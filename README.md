@@ -1,26 +1,21 @@
 # DiscordGlass
 
-A Mac Discord voice overlay by [silentrosehill](https://github.com/silentrosehill).
-
-Glass styling, profile pictures, speaking rings, mute/deafen icons and right-click volume controls. Move and resize it in **Edit position**.
+A Mac Discord voice overlay by [silentrosehill](https://github.com/silentrosehill): profile pictures, speaking rings, mute/deafen icons and right-click volume. Move, resize and adjust the glass in plugin settings.
 
 ## Install
 
-1. Install [Vencord](https://vencord.dev/download/) for Discord Desktop.
-2. Download **DiscordGlass-Mac.zip** from [Releases](https://github.com/silentrosehill/DiscordGlass/releases/latest).
-3. Open **DiscordGlass Patch.app** and click **Update DiscordGlass**.
-4. Enable **DiscordGlass** in Vencord’s Plugins settings.
+Download **DiscordGlass-plugin.zip** from [Releases](https://github.com/silentrosehill/DiscordGlass/releases/latest).
 
-Use the same patch app for updates. Overlay-only updates keep Discord running; plugin updates ask before restarting it.
+1. Copy `discordGlass` into your Vencord source checkout at `src/userplugins/discordGlass`.
+2. Copy `DiscordGlass Overlay.app` into `~/Library/Application Support/DiscordGlass/` (create the folder if needed).
+3. In your Vencord checkout, run `pnpm build` and `pnpm inject`, then restart Discord and enable **DiscordGlass**.
 
-macOS 15+. Native Liquid Glass on macOS 26+. The download is for Apple silicon; Intel users can build from source. The updater needs Python 3. Client mods are unsupported by Discord. The apps are signed ad hoc, not Apple-notarized.
+Vencord custom plugins require a source build; there is no ZIP import button. [Official guide](https://docs.vencord.dev/installing/custom-plugins/).
 
-## Build
+macOS 15+. Native Liquid Glass on macOS 26+. The included helper is for Apple silicon and is ad-hoc signed, not notarized. This plugin requires Discord Desktop on macOS.
 
-Requires Xcode Command Line Tools, Git, Node.js and pnpm.
+## Source
 
-```sh
-bash build.sh
-```
+`discordGlass/` contains the Vencord plugin. `Overlay/` contains the native helper. Build the helper with `bash build.sh` using Xcode 27 Command Line Tools; it builds for your Mac's architecture.
 
-Builds the patch app and refreshes its Desktop copy. GPL-3.0-or-later; includes Vencord code by Vendicated and contributors. See [SECURITY.md](SECURITY.md) for review details and limits.
+GPL-3.0-or-later. Uses Vencord APIs by Vendicated and contributors. See [SECURITY.md](SECURITY.md).

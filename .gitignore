@@ -1,9 +1,5 @@
 *.app/
-Vencord-dist/
-Vencord-source.tar.gz
 .build-deps/
 __pycache__/
 *.pyc
 .DS_Store
-
-/AGENTS.md

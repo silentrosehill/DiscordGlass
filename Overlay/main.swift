@@ -81,7 +81,7 @@ final class VolumeControl: NSViewController {
     override func loadView() {
         view = NSView(frame: NSRect(x: 0, y: 0, width: 240, height: 115))
         if !available {
-            let message = NSTextField(wrappingLabelWithString: "Restart Discord once to enable avatar volume controls. Use DiscordGlass Patch on your Desktop.")
+            let message = NSTextField(wrappingLabelWithString: "Restart Discord once to enable avatar volume controls.")
             message.frame = NSRect(x: 14, y: 34, width: 212, height: 65); view.addSubview(message)
             return
         }
