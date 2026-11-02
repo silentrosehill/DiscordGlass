@@ -8,7 +8,7 @@ for name in 'DiscordGlass Overlay.app' Vencord-dist Install.command install.py u
   ditto "$name" "$APP/Contents/Resources/Payload/$name"
 done
 cat > "$APP/Contents/Info.plist" <<'PLIST'
-<?xml version="1.0" encoding="UTF-8"?><plist version="1.0"><dict><key>CFBundleIdentifier</key><string>local.discordglass.patch</string><key>CFBundleName</key><string>DiscordGlass Patch</string><key>CFBundleExecutable</key><string>DiscordGlassPatch</string><key>CFBundleShortVersionString</key><string>1.0.0</string><key>CFBundleVersion</key><string>1</string><key>NSHumanReadableCopyright</key><string>Copyright © 2026 silentrosehill</string><key>CFBundlePackageType</key><string>APPL</string><key>LSMinimumSystemVersion</key><string>15.0</string><key>NSHighResolutionCapable</key><true/></dict></plist>
+<?xml version="1.0" encoding="UTF-8"?><plist version="1.0"><dict><key>CFBundleIdentifier</key><string>local.discordglass.patch</string><key>CFBundleName</key><string>DiscordGlass Patch</string><key>CFBundleExecutable</key><string>DiscordGlassPatch</string><key>CFBundleShortVersionString</key><string>1.0.1</string><key>CFBundleVersion</key><string>2</string><key>NSHumanReadableCopyright</key><string>Copyright © 2026 silentrosehill</string><key>CFBundlePackageType</key><string>APPL</string><key>LSMinimumSystemVersion</key><string>15.0</string><key>NSHighResolutionCapable</key><true/></dict></plist>
 PLIST
 cp LICENSE UPSTREAM.txt "$APP/Contents/Resources/"
 codesign --force --sign - "$APP"

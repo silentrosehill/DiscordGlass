@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 silentrosehill
 # SPDX-License-Identifier: GPL-3.0-or-later
+import sys
+sys.dont_write_bytecode = True
 import importlib.util
 from pathlib import Path
 

@@ -64,3 +64,12 @@ with tempfile.TemporaryDirectory() as directory:
         raise AssertionError('Allowed symlink target')
     assert (old1 / 'value').read_text() == 'old1'
 print('Transaction rollback and linked-target checks passed')
+
+import runpy
+with tempfile.TemporaryDirectory() as directory:
+    test_root = Path(directory)
+    for name in ['install.py', 'update-overlay.py']:
+        shutil.copy2(Path(__file__).resolve().parent / name, test_root / name)
+    subprocess.run([__import__('sys').executable, '-c', 'import runpy,sys; runpy.run_path(sys.argv[1], run_name="installer_test")', str(test_root / 'install.py')], check=True)
+    assert not (test_root / '__pycache__').exists(), 'Installer modified its signed bundle with a Python cache'
+print('Signed-bundle cache-write check passed')

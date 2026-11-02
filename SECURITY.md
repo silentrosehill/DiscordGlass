@@ -5,6 +5,7 @@ Reviewed the custom plugin, native overlay, avatar loading and updater for a sin
 ## Fixed before publication
 
 - Avatar downloads now stop at 1 MB while streaming. Redirects are checked before following them and remain restricted to HTTPS Discord image hosts. Cookies are disabled. Images are checked for dimensions and only the first frame is decoded, preventing small compressed files from allocating huge images.
+- The installer disables Python bytecode writes, so installing cannot add cache files inside its own signed app bundle.
 - Full updates stage files first and roll back both the overlay and Vencord if either replacement fails. Overlay updates use the same transaction. Linked installation folders are rejected, updates are locked against concurrent writers, and receipts are written within the transaction.
 
 ## Checked
